@@ -4,6 +4,19 @@
 
 {% block body %}
     <h2>Liste de mes souhaits</h2>
-<p>ici je suis dans la liste de mes souhait</p>
+
+
+    <ul>
+        {% for souhait in souhaits %}
+           <li>
+               <a href="{{ path( 'wish_detail', {'id':souhait.id()} ) }}"> {{ souhait.titre }}</a>
+           </li>
+
+        {% endfor %}
+
+    </ul>
+
+
+
 {% endblock %}
 

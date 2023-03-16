@@ -25,14 +25,26 @@ a{
 
 nav {
    text-decoration: none;
-
-
+    margin: 2em;
+    font-size: 1.2em;
 }
-ul {
+
+.headerLogoTitre{
+    display: flex;
+    padding: 1.2em;
+    padding-left: 2em;
+}
+
+.aLogo{
+    padding-right: 2em;
+}
+
+.navigation {
     list-style-type: none;
     display: flex;
     margin: 5px;
 }
+
 
 h1{
     font-family: 'Quicksand', sans-serif;
