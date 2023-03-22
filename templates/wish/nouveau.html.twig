@@ -2,10 +2,15 @@
 
 {% block body %}
 <h3>Insertion d'un nouveau souhait </h3>
-<h5>titre du souhait inserer :</h5>
-{{ souhait.titre }}
-    <h5>auteur du souhait inserer :</h5>
-    {{ souhait.auteur }}
+
+
+    {{ form_start(souhaitForm) }}
+
+    {{ form_widget(souhaitForm) }}
+
+    <button>ajouter mon souhait</button>
+
+    {{ form_end(souhaitForm) }}
 
 
 {% endblock %}

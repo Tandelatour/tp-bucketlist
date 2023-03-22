@@ -3,7 +3,13 @@
 {% block titre %}{{ parent() }} | Detail {% endblock %}
 
 {% block body %}
-    <h2>Detail de souhait</h2>
-<p>ici je suis dans le détails de mon souhait</p>
+
+    <div class="wishDetail">
+    <h2> {{ souhait.titre }}</h2>
+    <br>
+    <label for="">description :</label><p> {{ souhait.description }}</p>
+    <label for="">auteur :</label><p> {{ souhait.auteur }}</p>
+    <label for="">date de création :</label><p>le {{ souhait.dateCreation|date('d/m/y à H:i')}}</p>
+    </div>
 {% endblock %}
 

@@ -15,8 +15,16 @@
 </head>
 <body>
 {% include 'include/header.html.twig' %}
-
 <main>
+
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages  %}
+
+                {{ message }}
+
+        {% endfor %}
+    {% endfor %}
 
     {% block body %}{% endblock %}
 
