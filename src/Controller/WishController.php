@@ -43,6 +43,7 @@ class WishController extends AbstractController
 
 
 
+
         return $this->render('wish/detail.html.twig', [
             'souhait' => $souhait
 
