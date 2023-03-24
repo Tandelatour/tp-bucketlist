@@ -12,6 +12,12 @@
     <label for="">date de création :</label><p>le {{ souhait.dateCreation|date('d/m/y à H:i')}}</p>
      <div>{{ souhait.category.nom }}</div>
 
+        <form action="{{ path('wish_delete', {'id': souhait.id}) }}">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ souhait.id) }}">
+            <button>Supprimer</button>
+
+        </form>
+
 
     </div>
 {% endblock %}

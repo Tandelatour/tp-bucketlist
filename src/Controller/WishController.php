@@ -26,8 +26,6 @@ class WishController extends AbstractController
 
     $souhaits = $wishRepository->findBy([],['dateCreation'=>'Desc']);
 
-
-
         return $this->render('wish/list.html.twig', [
 
             'souhaits' => $souhaits
@@ -40,14 +38,27 @@ class WishController extends AbstractController
         //todo recup avec un id en bdd
         $souhait = $wishRepository->find($id);
 
-
-
-
-
         return $this->render('wish/detail.html.twig', [
             'souhait' => $souhait
 
         ]);
+    }
+
+
+    #[Route('/delete/{id}', name: 'delete')]
+    public function delete(int $id,
+                           WishRepository $wishRepository,
+                           EntityManagerInterface $entityManager,
+                           Request $request): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$id,$request->get('_token'))) {
+            //rechercher le souhait en bdd
+            $souhait = $wishRepository->find($id);
+            $entityManager->remove($souhait);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('wish_liste');
+
     }
 
     #[Route('/nouveau', name: 'nouveau')]
@@ -61,23 +72,12 @@ class WishController extends AbstractController
 
         if ($souhaitForm->isSubmitted() && $souhaitForm->isValid()){
             $souhait->setDateCreation(new \DateTime('now'));
-
             $entityManager->persist($souhait);
             $entityManager->flush();
 
             $this->addFlash("success", "Voeux ajouter ! ");
             return $this->redirectToRoute('wish_liste');
         }
-
-//        $souhait->setTitre("manger des nouilles");
-//        $souhait->setDescription("trop bon les nouilles");
-//        $souhait->setAuteur("Tan");
-//        $souhait->setDateCreation(new \DateTime());
-//
-//        $entityManager->persist($souhait);
-//        $entityManager->flush();
-//        dump($souhait);
-
 
 
         return $this->render('wish/nouveau.html.twig', [
